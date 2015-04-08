@@ -102,7 +102,7 @@ public class QueensLogic {
 
         // If a queen is placed in this cell then this most be true
         cellBDD = cellBDD.or(restFalse);
-        // Otherwise this must be true
+        // Otherwise it must be true that no queen is placed at this location
         cellBDD = cellBDD.or(this.factory.nithVar(getVariable(x,y)));
 
         // This cell must be true for the BBD to be true
