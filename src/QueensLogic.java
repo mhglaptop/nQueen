@@ -57,7 +57,7 @@ public class QueensLogic {
         for (int i = 0; i< N;i++){
             BDD onePrRow = False;
             for(int j=0; j< N; j++) {
-               onePrRow = onePrRow.or(this.factory.ithVar(getVariable(i,j)));
+                onePrRow = onePrRow.or(this.factory.ithVar(getVariable(i,j)));
             }
             this.bdd.andWith(onePrRow);
         }
@@ -86,7 +86,7 @@ public class QueensLogic {
         }
 
         int current = getVariable(x,y);
-        // Up left check, this is done my shifting variable with a N+1 interval X times
+        // Up left check, this is done my shifting variable with a -N+1 interval X times
         int uCount = 1;
         while (uCount <= x) {
             current-=N+1;
@@ -97,7 +97,7 @@ public class QueensLogic {
         }
 
 
-        // Down left check, this is done my shifting variable with a N-1 interval X times.
+        // Down left check, this is done my shifting variable with a +N-1 interval X times.
         int dCount = 1;
         current = getVariable(x,y);
         while (dCount <= x) {
