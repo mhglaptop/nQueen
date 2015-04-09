@@ -61,6 +61,9 @@ public class QueensLogic {
             }
             this.bdd.andWith(onePrRow);
         }
+
+        // Any inital placements that are invalid?
+        updateBoard();
     }
 
     // Rules loosely based on http://javabdd.sourceforge.net/xref/NQueens.html
@@ -144,6 +147,11 @@ public class QueensLogic {
         System.out.println("Placeing a queen in bdd variable: " + getVariable(column,row));
 
         System.out.println("Updating rules");
+        updateBoard();
+        return true;
+    }
+
+    private void updateBoard(){
 
         // Update board with invalid placements
         for (int i = 0; i< N;i++){
@@ -156,7 +164,5 @@ public class QueensLogic {
                 }
             }
         }
-
-        return true;
     }
 }
