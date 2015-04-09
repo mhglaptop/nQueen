@@ -63,8 +63,12 @@ public class QueensLogic {
         }
     }
 
-    // Rules taken from http://javabdd.sourceforge.net/xref/NQueens.html
+    // Rules loosely based on http://javabdd.sourceforge.net/xref/NQueens.html
     // x, y correspond to the specific cell we are looking at.
+    // If a queen is placed at x,y no other queen must be placed in the same row,
+    // the same column and diagonal across.
+    // We create a sub bdd for each cell, where either the rules must be true or a queen can't be placed
+    // at this position.
     private void boardRules(int x, int y){
         BDD restFalse = True;
         BDD cellBDD = False;
@@ -135,7 +139,7 @@ public class QueensLogic {
 
         board[column][row] = 1;
 
-        // Place the queen in the our BDD
+        // Place the queen in our BDD
         this.bdd = this.bdd.restrict(this.factory.ithVar(getVariable(column, row)));
         System.out.println("Placeing a queen in bdd variable: " + getVariable(column,row));
 
