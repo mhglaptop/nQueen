@@ -150,10 +150,8 @@ public class QueensLogic {
         updateBoard();
         return true;
     }
-
+    // Update board with invalid placements
     private void updateBoard(){
-
-        // Update board with invalid placements
         for (int i = 0; i< N;i++){
             for(int j=0; j< N; j++) {
                 BDD test = this.bdd.restrict(this.factory.ithVar(getVariable(i,j)));
