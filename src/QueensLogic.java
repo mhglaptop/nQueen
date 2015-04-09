@@ -112,7 +112,7 @@ public class QueensLogic {
             dCount++;
         }
 
-        // If a queen is placed in this cell then this most be true
+        // If a queen is placed in this cell then this must be true
         cellBDD = cellBDD.or(restFalse);
         // Otherwise it must be true that no queen is placed at this location
         cellBDD = cellBDD.or(this.factory.nithVar(getVariable(x,y)));
@@ -144,7 +144,7 @@ public class QueensLogic {
         System.out.println("Placeing a queen in bdd variable: " + getVariable(column,row));
 
         System.out.println("Updating rules");
-        // put some logic here..
+
         // Update board with invalid placements
         for (int i = 0; i< N;i++){
             for(int j=0; j< N; j++) {
