@@ -5,7 +5,6 @@
  * @author Stavros Amanatidis
  *
  */
-import java.util.*;
 
 import net.sf.javabdd.*;
 
@@ -53,6 +52,15 @@ public class QueensLogic {
                 System.out.println("Is variable: " + getVariable(i,j));
             }
         }
+
+        // There must be one queen pr row.
+        for (int i = 0; i< N;i++){
+            BDD onePrRow = False;
+            for(int j=0; j< N; j++) {
+               onePrRow = onePrRow.or(this.factory.ithVar(getVariable(i,j)));
+            }
+            this.bdd.andWith(onePrRow);
+        }
     }
 
     // Rules taken from http://javabdd.sourceforge.net/xref/NQueens.html
@@ -78,7 +86,7 @@ public class QueensLogic {
         }
 
         int current = getVariable(x,y);
-        // Up left check
+        // Up left check, this is done my shifting variable with a N+1 interval X times
         int uCount = 1;
         while (uCount <= x) {
             current-=N+1;
@@ -89,7 +97,7 @@ public class QueensLogic {
         }
 
 
-        // Down left check
+        // Down left check, this is done my shifting variable with a N-1 interval X times.
         int dCount = 1;
         current = getVariable(x,y);
         while (dCount <= x) {
